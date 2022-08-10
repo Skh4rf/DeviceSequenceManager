@@ -141,7 +141,7 @@
                         HorizontalAlignment="Left"
                         Width="150"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                        FontSize="18">
+                        FontSize="18" SelectionChanged="ComboBoxTimeUnit_SelectionChanged">
                             <ComboBox.SelectedValue>
                                 <Binding
                                     Path="DurationUnitString">

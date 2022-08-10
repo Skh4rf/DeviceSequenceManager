@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Threading;
 
 namespace DeviceSequenceManager
 {
@@ -31,6 +32,10 @@ namespace DeviceSequenceManager
         private bool dialogIsOpen;
         private bool isEdit;
         private int editIndex;
+        private bool isChecking;
+        private int checkProgress;
+        private bool isCheckComplete;
+        private bool isCheckFailed;
 
         #region PropertyIni
         public List<Device> Devices
@@ -78,9 +83,30 @@ namespace DeviceSequenceManager
             get { return editIndex; }
             set { editIndex = value; NotifyPropertyChanged(); }
         }
+        public bool IsChecking
+        {
+            get { return isChecking; }
+            set { isChecking = value; NotifyPropertyChanged(); }
+        }
+        public int CheckProgress
+        {
+            get { return checkProgress; }
+            set { checkProgress = value; NotifyPropertyChanged(); }
+        }
+        public bool IsCheckComplete
+        {
+            get { return isCheckComplete; }
+            set { isCheckComplete = value; NotifyPropertyChanged(); }
+        }
+        public bool IsCheckFailed
+        {
+            get { return isCheckFailed; }
+            set { isCheckFailed = value; NotifyPropertyChanged(); }
+        }
         #endregion PropertyIni
 
         public MVVM.DelegateCommand CloseDialogWithSave { get; private set; }
+        public MVVM.DelegateCommand CheckStatus { get; set; }
 
         void CloseDialogWithSaveExecute()
         {
@@ -151,6 +177,31 @@ namespace DeviceSequenceManager
             DeviceTypes = DataContainer.DeviceTypes;
         }
 
+        void CheckStatusExcecute()
+        {
+            IsCheckFailed = false;
+            IsCheckComplete = false;
+            IsChecking = true;
+            Device test = new Device()
+            {
+                TcpAddress = new TcpAddress()
+                {
+                    IP = IPAddress,
+                    Port = Port,
+                    Typ = Socket
+                }
+            };
+            if (test.ConnectionAvailable())
+            {
+                IsCheckComplete = true;
+            }
+            else
+            {
+                IsCheckFailed = true;
+            }
+            IsChecking = false;
+        }
+
         public AddDeviceUserControlViewModel()
         {
             this.DeviceTypes = DataContainer.DeviceTypes;
@@ -160,6 +211,9 @@ namespace DeviceSequenceManager
             CloseDialogWithSave = new MVVM.DelegateCommand(
                 (o) => true,
                 (o) => CloseDialogWithSaveExecute());
+            CheckStatus = new MVVM.DelegateCommand(
+                (o) => true,
+                (o) => CheckStatusExcecute());
         }
     }
 }

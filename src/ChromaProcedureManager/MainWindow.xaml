@@ -90,7 +90,6 @@
                 Header="_Help">
                 <MenuItem
                         Header="_Open manual"
-                        InputGestureText="F1"
                         Icon="{materialDesign:PackIcon Kind=Help}" />
             </MenuItem>
 

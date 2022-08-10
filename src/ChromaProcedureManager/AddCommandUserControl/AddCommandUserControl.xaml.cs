@@ -88,11 +88,11 @@ namespace DeviceSequenceManager
                                 Mode = BindingMode.OneWayToSource,
                                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
                             };
-                            b.ValidationRules.Add(new MVVM.CommandConfigurationValidationRule() 
-                            { 
-                                DecimalPlaces = command.DecimalPlaces, 
-                                RangeMaximum = command.RangeMaximum, 
-                                RangeMinimum = command.RangeMinimum 
+                            b.ValidationRules.Add(new MVVM.CommandConfigurationValidationRule()
+                            {
+                                DecimalPlaces = command.DecimalPlaces,
+                                RangeMaximum = command.RangeMaximum,
+                                RangeMinimum = command.RangeMinimum
                             });
                             
                             textBoxNumber.SetBinding(TextBox.TextProperty, b);
@@ -151,6 +151,10 @@ namespace DeviceSequenceManager
                         }
                     }
                 }
+            }
+            if (ComboBoxTimeUnit.SelectedValue == null)
+            {
+                ValidationHasError = true;
             }
             if (SequenceOperation.Commands.Count > 0 && ValidationHasError == false)
             {
@@ -343,6 +347,11 @@ namespace DeviceSequenceManager
             DataContainer.Sequence.Operations.Remove(editOperation);
             DataContainer.MainWindowVM.UpdateSequence();
             DataContainer.AddCommandUserControlVM.IsOpen = false;
+        }
+
+        private void ComboBoxTimeUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateButtonAcceptStatus();
         }
     }
 }

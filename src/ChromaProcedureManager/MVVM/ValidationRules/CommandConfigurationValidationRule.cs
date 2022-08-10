@@ -22,9 +22,12 @@ namespace DeviceSequenceManager.MVVM
             try
             {
                 double input = Convert.ToDouble(value);
-                if (input > RangeMaximum || input < RangeMinimum)
+                if (!(RangeMinimum == 0 && RangeMaximum == 0))
                 {
-                    return new ValidationResult(false, $"Input has to be between {RangeMinimum} and {RangeMaximum}");
+                    if (input > RangeMaximum || input < RangeMinimum)
+                    {
+                        return new ValidationResult(false, $"Input has to be between {RangeMinimum} and {RangeMaximum}");
+                    }
                 }
 
                 string str = value.ToString();

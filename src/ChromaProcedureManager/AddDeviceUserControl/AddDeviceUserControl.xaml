@@ -129,9 +129,9 @@
                         <Button
                             Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                             Margin="54 32 0 0"
-                            Command="{Binding SaveCommand}"
-                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
-                            materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
+                            Command="{Binding CheckStatus}"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsChecking}"
+                            materialDesign:ButtonProgressAssist.Value="{Binding CheckProgress}">
                             <Button.IsEnabled>
                                 <MultiBinding>
                                     <MultiBinding.Converter>
@@ -155,7 +155,7 @@
                                             Value="CloudSync"/>
                                         <Style.Triggers>
                                             <DataTrigger
-                                                    Binding="{Binding IsSaveComplete}"
+                                                    Binding="{Binding IsCheckComplete}"
                                                     Value="True">
                                                 <Setter
                                                     Property="Kind"
@@ -173,7 +173,7 @@
                                                 </DataTrigger.EnterActions>
                                             </DataTrigger>
                                             <DataTrigger
-                                                Binding="{Binding IsSaveFailed}"
+                                                Binding="{Binding IsCheckFailed}"
                                                 Value="True">
                                                 <Setter
                                                     Property="Kind"
