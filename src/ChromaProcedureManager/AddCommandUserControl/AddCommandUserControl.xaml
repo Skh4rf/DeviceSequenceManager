@@ -1,0 +1,230 @@
+﻿<UserControl x:Class="DeviceSequenceManager.AddCommandUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DeviceSequenceManager"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="930" d:DesignWidth="1600"
+             xmlns:mvvm="clr-namespace:DeviceSequenceManager.MVVM">
+
+    <UserControl.DataContext>
+        <local:AddCommandUserControlViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type Border}" x:Key="HorizontalDividerBorder">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}"/>
+                <Setter Property="UseLayoutRounding" Value="True"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="Height" Value="1"/>
+            </Style>
+
+            <Style TargetType="{x:Type Border}" x:Key="VerticalDividerBorder" BasedOn="{StaticResource HorizontalDividerBorder}">
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="Height" Value="Auto"/>
+                <Setter Property="Width" Value="1"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+
+        <materialDesign:DialogHost
+            Name="AddCommandDialog"
+            DialogTheme="Dark"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
+            IsOpen="{Binding IsOpen}" 
+            DialogOpened="AddCommandDialog_DialogOpened">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel
+                    Width="1500"
+                    Height="800"
+                    Margin="16">
+                    
+                    <!--#region PreConfiguration-->
+                    <TextBlock
+                        Text="Configure Command:"
+                        Style="{StaticResource MaterialDesignHeadline3TextBlock}"/>
+
+                    <ComboBox
+                        Name="ComboBoxDeviceType"
+                        Margin="0 20 0 0 "
+                        HorizontalAlignment="Left"
+                        Width="310"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                        materialDesign:HintAssist.Hint="Device type"
+                        FontSize="18"
+                        ItemsSource="{Binding DeviceTypes, UpdateSourceTrigger=PropertyChanged}"
+                        DisplayMemberPath="Name"
+                        SelectedValuePath="Name" SelectionChanged="ComboBoxDeviceType_SelectionChanged">
+                        <ComboBox.SelectedItem>
+                            <Binding
+                                Path="DeviceType">
+                                <Binding.ValidationRules>
+                                    <mvvm:ComboBoxNotEmptyValidationRule
+                                        ValidatesOnTargetUpdated="True"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedItem>
+                    </ComboBox>
+
+                    <StackPanel
+                    Orientation="Horizontal"
+                    Margin="0 20 0 0">
+                    <ComboBox
+                        Margin="0 0 40 0"
+                        Name="ComboBoxIpAddress"
+                        HorizontalAlignment="Left"
+                        Width="310"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                        materialDesign:HintAssist.Hint="IP Address"
+                        FontSize="18"
+                        ItemsSource="{Binding MatchingDevices, UpdateSourceTrigger=PropertyChanged}"
+                        DisplayMemberPath="TcpAddress.TCP"
+                        SelectedValuePath="TcpAddress.TCP" SelectionChanged="ComboBoxIpAddress_SelectionChanged">
+                        <ComboBox.IsEnabled>
+                            <Binding
+                                ElementName="ComboBoxDeviceType"
+                                Path="(Validation.HasError)">
+                                <Binding.Converter>
+                                    <mvvm:BoolInvertConverter/>
+                                </Binding.Converter>
+                            </Binding>
+                        </ComboBox.IsEnabled>
+                        <ComboBox.SelectedItem>
+                            <Binding
+                                Path="SelectedDevice">
+                                <Binding.ValidationRules>
+                                    <mvvm:ComboBoxNotEmptyValidationRule
+                                        ValidatesOnTargetUpdated="True"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedItem>
+                    </ComboBox>
+                    <TextBox 
+                        Name="TextBoxDuration"
+                        Margin="0 0 20 0"
+                        HorizontalAlignment="Left"
+                        Width="300"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        materialDesign:HintAssist.Hint="Duration"
+                        FontSize="18">
+                        <TextBox.IsEnabled>
+                            <Binding
+                                ElementName="ComboBoxIpAddress"
+                                Path="(Validation.HasError)">
+                                <Binding.Converter>
+                                    <mvvm:BoolInvertConverter/>
+                                </Binding.Converter>
+                            </Binding>
+                        </TextBox.IsEnabled>
+                        <TextBox.Text>
+                            <Binding
+                                Path="Duration"
+                                Mode="TwoWay"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                        <mvvm:DurationValidationRule
+                                        ValidatesOnTargetUpdated="True"/>
+                                    </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                        <ComboBox
+                        Name="ComboBoxTimeUnit"
+                        HorizontalAlignment="Left"
+                        Width="150"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                        FontSize="18">
+                            <ComboBox.SelectedValue>
+                                <Binding
+                                    Path="DurationUnitString">
+                                    <Binding.ValidationRules>
+                                        <mvvm:ComboBoxNotEmptyValidationRule
+                                            ValidatesOnTargetUpdated="True"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </ComboBox.SelectedValue>
+                            <ComboBox.IsEnabled>
+                                <Binding
+                                    ElementName="ComboBoxIpAddress"
+                                    Path="(Validation.HasError)">
+                                    <Binding.Converter>
+                                        <mvvm:BoolInvertConverter/>
+                                    </Binding.Converter>
+                                </Binding>
+                            </ComboBox.IsEnabled>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <Border
+                        Margin="0 20 0 0"
+                        Style="{StaticResource HorizontalDividerBorder}"/>
+                    
+                    <!--#endregion-->
+
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Name="StackPanelCommandConfiguration"
+                        Margin="0 20 0 0">
+                        
+                    </StackPanel>
+                    
+                    <!--#region NavBar-->
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="1"
+                        Margin="0 0 0 0">
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsDefault="True"
+                            Margin="0 8 8 0"
+                            Name="ButtonAccept"
+                            IsEnabled="False"
+                            Content="ACCEPT" Click="ButtonAccept_Click">
+                        </Button>
+
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsDefault="True"
+                            Margin="0 8 8 0"
+                            Name="ButtonDelete"
+                            IsEnabled="True"
+                            Content="DELETE" Click="ButtonDelete_Click">
+                            <Button.Visibility>
+                                <Binding
+                                    Path="IsEdit">
+                                    <Binding.Converter>
+                                        <BooleanToVisibilityConverter/>
+                                    </Binding.Converter>
+                                </Binding>
+                            </Button.Visibility>
+                        </Button>
+
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsCancel="True"
+                            Margin="0 8 8 0"
+                            Content="CANCEL"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean>False</system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                    <!--#endregion-->
+                    
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        
+    </Grid>
+</UserControl>

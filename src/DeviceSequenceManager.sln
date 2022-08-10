@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceSequenceManager", "ChromaProcedureManager\DeviceSequenceManager.csproj", "{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBF16144-618F-4BE3-B3D5-E783FD65A3EF}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,413 @@
+﻿<Window x:Name="window" x:Class="DeviceSequenceManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeviceSequenceManager"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        xmlns:mvvm="clr-namespace:DeviceSequenceManager.MVVM"
+        Title="Device Sequence Manager" Height="930" Width="1600"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type Border}" x:Key="HorizontalDividerBorder">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}"/>
+                <Setter Property="UseLayoutRounding" Value="True"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="Height" Value="1"/>
+            </Style>
+
+            <Style TargetType="{x:Type Border}" x:Key="VerticalDividerBorder" BasedOn="{StaticResource HorizontalDividerBorder}">
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="Height" Value="Auto"/>
+                <Setter Property="Width" Value="1"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="800"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="800"/>
+        </Grid.RowDefinitions>
+
+        <!--#region MenuBar-->
+        <Menu 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="3"
+            Style="{StaticResource MaterialDesignMenu}">
+            <MenuItem
+                Header="_File">
+                <MenuItem
+                    Header="Open"
+                    Icon="{materialDesign:PackIcon Kind=FolderOpenOutline}"
+                    Command="{Binding OpenCommand}"
+                    />
+                <MenuItem
+                    Header="Save"
+                    Icon="{materialDesign:PackIcon Kind=ContentSave}"
+                    Command="{Binding SaveCommand}"/>
+                <MenuItem
+                    Header="Save As.."
+                    Command="{Binding SaveCommand}"/>
+                <Separator />
+                <MenuItem
+                    Header="Exit"
+                    Icon="{materialDesign:PackIcon Kind=ExitToApp}" Click="MenuItem_Click"/>
+            </MenuItem>
+            <MenuItem
+                Header="_Edit">
+                <MenuItem
+                    Header="Add device-type"
+                    Icon="{materialDesign:PackIcon Kind=DatabaseAdd}" 
+                    Click="MenuItemCreateNewDeviceType_Click"/>
+                <MenuItem
+                    Header="Settings"
+                    Icon="{materialDesign:PackIcon Kind=Settings}"
+                    IsEnabled="False"/>
+            </MenuItem>
+            <MenuItem
+                Header="_Help">
+                <MenuItem
+                        Header="_Open manual"
+                        InputGestureText="F1"
+                        Icon="{materialDesign:PackIcon Kind=Help}" />
+            </MenuItem>
+
+        </Menu>
+        <!--#endregion-->
+
+        <!--#region Headline-->
+        <StackPanel 
+            Grid.Column="0"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Orientation="Horizontal">
+
+            <TextBlock 
+                Text="Devices:" 
+                Grid.Column="0" 
+                Grid.Row="1" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left" 
+                Margin="20,0,0,0"
+                Style="{StaticResource MaterialDesignHeadline3TextBlock}"/>
+
+            <Button
+                Name="ButtonAddDevice"
+                Grid.Column="0"
+                Grid.Row="1"
+                Style="{StaticResource MaterialDesignIconButton}"
+                ToolTip="Add a new device"
+                Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                Margin="20,5,0,0" Click="ButtonAddDevice_Click">
+                <materialDesign:PackIcon
+                    Kind="Add"/>
+            </Button>
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Column="1"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Orientation="Horizontal">
+
+            <TextBlock 
+                Text="Sequence:"
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left"
+                Margin="20,0,0,0"
+                Style="{StaticResource MaterialDesignHeadline3TextBlock}"/>
+
+            <Button
+                Style="{StaticResource MaterialDesignIconButton}"
+                Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                Margin="20,5,0,0" Click="Button_Click">
+                <materialDesign:PackIcon
+                    Kind="Play" />
+            </Button>
+        </StackPanel>
+        <!--#endregion-->
+
+        <!--#region DividerLines-->
+        <Line 
+            Grid.Column="2" 
+            Grid.Row="1" 
+            Grid.RowSpan="2" 
+            Stroke="Gray" 
+            Fill="Gray" 
+            StrokeThickness="1" 
+            X1="0" X2="0" Y1="0" Y2="880"/>
+
+        <Line
+            Grid.Column="1"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Stroke="Gray"
+            Fill="Gray"
+            StrokeThickness="1"
+            X1="0"
+            X2="0"
+            Y1="0"
+            Y2="880"/>
+        <!--#endregion-->
+
+        <!--#region ConsoleColumn-->
+        <TextBox 
+            Name="TextBoxConsole"
+            Width="300" 
+            Height="760" 
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="40,40,0,0" 
+            IsReadOnly="True"
+            Grid.Column="2"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+        <!--#endregion-->
+
+        <!--#region SequenceColumn-->
+        <Button 
+            Grid.Column="1" 
+            Grid.Row="2" 
+            Content="+ Add operation" 
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Right" 
+            Margin="0,20,25,0"
+            Command="{Binding CreateNewCommand}"
+            Style="{StaticResource MaterialDesignFlatMidBgButton}"/>
+
+        <ProgressBar
+            Name="ProgressBarSequence"
+            Grid.Column="1"
+            Grid.Row="2"
+            Height="10"
+            Width="560"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="25,31,0,0"
+            Style="{StaticResource MaterialDesignLinearProgressBar}" Visibility="Collapsed"/>
+
+        <Border 
+            Grid.Column="1" 
+            Grid.Row="2" 
+            Width="750" 
+            Height="660" 
+            VerticalAlignment="Top" 
+            Margin="0,60,0,0" 
+            BorderBrush="DarkGray" 
+            BorderThickness="1">
+            <ScrollViewer
+                Style="{StaticResource MaterialDesignScrollViewer}">
+                <Grid Name="GridScrollViewer">
+                    <Line Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" HorizontalAlignment="Right" X1="0" X2="0" Y1="0" Y2="{Binding ActualHeight,ElementName=GridScrollViewer}"/>
+                    <ItemsControl
+                        Name="ListBoxSequence"
+                        Background="Transparent"
+                        Margin="0,0,0,0"
+                        materialDesign:ListBoxItemAssist.ShowSelection="True"
+                        ItemsSource="{Binding Sequence.Operations}"
+                        Tag="{Binding .}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <StackPanel>
+                                        <StackPanel
+                                        Margin="20,10,0,10"
+                                        Orientation="Horizontal"
+                                        Height="120"
+                                        Width="711">
+                                            <Grid Margin="0,0,20,0">
+                                                <Button
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                                    Width="30"
+                                                    Height="30"
+                                                    VerticalAlignment="Top"
+                                                    Command="{Binding DataContext.MoveOperationUpCommand, ElementName=window}"
+                                                    CommandParameter="{Binding}">
+                                                    <Button.IsEnabled>
+                                                        <Binding
+                                                            Path="Index">
+                                                            <Binding.Converter>
+                                                                <mvvm:IndexToBoolConvertButtonUp/>
+                                                            </Binding.Converter>
+                                                        </Binding>
+                                                    </Button.IsEnabled>
+                                                    <materialDesign:PackIcon
+                                                    Kind="ArrowUpBold"/>
+                                                </Button>
+                                                <Button
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                                    Width="30"
+                                                    Height="30"
+                                                    VerticalAlignment="Center"
+                                                    Command="{Binding DataContext.EditOperationCommand, ElementName=window}"
+                                                    CommandParameter="{Binding}">
+                                                    <materialDesign:PackIcon
+                                                    Kind="Settings"/>
+                                                </Button>
+
+                                                <Button
+                                                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                                Width="30"
+                                                Height="30"
+                                                VerticalAlignment="Bottom">
+                                                    <materialDesign:PackIcon
+                                                    Kind="ArrowDownBold"/>
+                                                    <Button.IsEnabled>
+                                                        <Binding>
+                                                            <Binding.Converter>
+                                                                <mvvm:IndexToBoolConvertButtonDown/>
+                                                            </Binding.Converter>
+                                                        </Binding>
+                                                    </Button.IsEnabled>
+                                                </Button>
+                                            </Grid>
+                                            <TextBlock
+                                            Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+                                            Text="{Binding Index}"
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,20,0"/>
+                                            <StackPanel>
+                                                <TextBlock
+                                                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                                Text="{Binding Device.DeviceType.Name}" 
+                                                Margin="0,0,0,10"/>
+                                                <TextBlock
+                                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                                Text="Operations:"
+                                                FontWeight="Normal"
+                                                TextDecorations="Underline"/>
+                                                <ScrollViewer
+                                                VerticalScrollBarVisibility="Hidden"
+                                                Style="{StaticResource MaterialDesignScrollViewer}"
+                                                Height="60">
+                                                    <TextBlock
+                                                    Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                                    Text="{Binding CommandList}"
+                                                    TextWrapping="Wrap"
+                                                    Width="400"/>
+                                                </ScrollViewer>
+                                            </StackPanel>
+                                            <Grid Width="187">
+                                                <TextBlock
+                                                Style="{StaticResource MaterialDesignHeadline3TextBlock}"
+                                                Text="{Binding DurationString}"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+
+            </ScrollViewer>
+        </Border>
+        <!--#endregion-->
+
+        <!--#region DeviceColumn-->
+        <ItemsControl
+            Grid.Column="0"
+            Grid.Row="2"
+            ItemsSource="{Binding Path=Devices}"
+            Grid.IsSharedSizeScope="True">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                    Margin="10,10,0,10"
+                        Width="390">
+                        <StackPanel
+                        Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Chip"
+                                         VerticalAlignment="Center"
+                                         Width="70"
+                                         Height="70"/>
+                            <Grid>
+                                <TextBlock
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="{Binding DeviceType.Name}"
+                                FontSize="16"
+                                VerticalAlignment="Top"
+                                Margin="10,10,0,0"/>
+                                <TextBlock
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Text="{Binding Path=TcpAddress.TCP}"
+                                FontSize="14"
+                                VerticalAlignment="Bottom"
+                                Margin="10,0,0,10"/>
+                            </Grid>
+                        </StackPanel>
+                        <Button
+                            Name="ButtonDeviceSettings"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Width="30"
+                            Height="30"
+                            Margin="0,0,20,0"
+                            Command="{Binding DataContext.EditDevice, ElementName=window}"
+                            CommandParameter="{Binding Path=TcpAddress}">
+                            <materialDesign:PackIcon
+                            Kind="Settings"/>
+                        </Button>
+                        <Button
+                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Width="30"
+                        Height="30"
+                        Margin="0,0,20,0"
+                        IsEnabled="False">
+                            <materialDesign:PackIcon
+                            Kind="Monitor"/>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!--#endregion-->
+
+        <local:AddDeviceUserControl 
+            x:Name="AddDevice"
+            Grid.ColumnSpan="3" 
+            Grid.RowSpan="3">
+        </local:AddDeviceUserControl>
+
+        <local:AddDeviceTypeUserControl
+            x:Name="AddDeviceType"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"/>
+
+        <local:AddCommandUserControl
+            x:Name="AddCommand"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="3"/>
+        
+    </Grid>
+</Window>
