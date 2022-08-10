@@ -225,6 +225,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FF2EE41CDEB74AA08CD3263291861D52"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_C2B1FBDE043F70E8EEE21D39620E1B97"
         "MsmSig" = "8:_UNDEFINED"
@@ -850,6 +856,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF2EE41CDEB74AA08CD3263291861D52"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Downloads\\icon.ico"
+            "TargetName" = "8:icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_2F374CE437E645219CF31F68DBA22BE2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -905,9 +931,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:DeviceSequenceManager Setup"
+        "ProductName" = "8:DeviceSequenceManager"
         "ProductCode" = "8:{EFF43AF4-7B6F-49E4-9D83-8918A25E7ECE}"
-        "PackageCode" = "8:{8EDB76C2-C2F4-4CD7-B9FE-FD59556E83CE}"
+        "PackageCode" = "8:{87E080B5-99D3-4F8D-BF50-D048B3FAC2D0}"
         "UpgradeCode" = "8:{498861D3-0402-495E-B801-B5C3398A3817}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -915,12 +941,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:Omicron"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:"
-        "Title" = "8:DeviceSequenceManager Setup"
+        "ARPHELPLINK" = "8:https://github.com/Skh4rf/ChromaProcedureManager/issues"
+        "Title" = "8:DeviceSequenceManager"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Jakob Metzler"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"

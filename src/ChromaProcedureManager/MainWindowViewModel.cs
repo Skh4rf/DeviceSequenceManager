@@ -50,7 +50,8 @@ namespace DeviceSequenceManager
         public MVVM.DelegateCommand EditOperationCommand { get; set; }
         public MVVM.DelegateCommand NewCommand { get; set; }
         public MVVM.DelegateCommand HelpCommand { get; set; }
-        
+        public MVVM.DelegateCommand ChromaDatasheetCommand { get; set; }
+
 
         public void UpdateDevices()
         {

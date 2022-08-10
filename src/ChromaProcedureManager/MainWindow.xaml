@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         xmlns:mvvm="clr-namespace:DeviceSequenceManager.MVVM"
-        Title="Device Sequence Manager" Height="930" Width="1600"
+        Title="Device Sequence Manager" Height="930" Width="1700"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -41,7 +41,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="800"/>
+            <ColumnDefinition Width="900"/>
             <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -52,6 +52,7 @@
 
         <!--#region MenuBar-->
         <Menu 
+            Name="Menu"
             Grid.Row="0" 
             Grid.Column="0" 
             Grid.ColumnSpan="3"
@@ -98,6 +99,10 @@
                         Header="_Open manual"
                         Command="{Binding HelpCommand}"
                         Icon="{materialDesign:PackIcon Kind=Help}" />
+                <MenuItem
+                        Header="_Chroma 61611 datasheet"
+                        Command="{Binding ChromaDatasheetCommand}"
+                        Icon="{materialDesign:PackIcon Kind=Book}" />
             </MenuItem>
 
         </Menu>
@@ -148,6 +153,7 @@
                 Style="{StaticResource MaterialDesignHeadline3TextBlock}"/>
 
             <Button
+                Name="ButtonStartSequence"
                 Style="{StaticResource MaterialDesignIconButton}"
                 Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
                 Margin="20,5,0,0" Click="Button_Click">
@@ -197,6 +203,7 @@
 
         <!--#region SequenceColumn-->
         <Button 
+            Name="ButtonAddCommand"
             Grid.Column="1" 
             Grid.Row="2" 
             Content="+ Add operation" 
@@ -220,7 +227,7 @@
         <Border 
             Grid.Column="1" 
             Grid.Row="2" 
-            Width="750" 
+            Width="850" 
             Height="660" 
             VerticalAlignment="Top" 
             Margin="0,60,0,0" 
@@ -245,7 +252,7 @@
                                         Margin="20,10,0,10"
                                         Orientation="Horizontal"
                                         Height="120"
-                                        Width="711">
+                                        Width="811">
                                             <Grid Margin="0,0,20,0">
                                                 <Button
                                                     Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
@@ -341,6 +348,7 @@
 
         <!--#region DeviceColumn-->
         <ItemsControl
+            Name="ItemsControlDevice"
             Grid.Column="0"
             Grid.Row="2"
             ItemsSource="{Binding Path=Devices}"

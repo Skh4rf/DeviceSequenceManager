@@ -45,5 +45,15 @@ namespace DeviceSequenceManager
         {
             DataContainer.Sequence.ExecuteSequence();
         }
+
+        public void DisableButtons()
+        {
+            ButtonAddDevice.IsEnabled = ButtonAddCommand.IsEnabled = ButtonStartSequence.IsEnabled = Menu.IsEnabled = ItemsControlDevice.IsEnabled = ListBoxSequence.IsEnabled = false;
+        }
+
+        public void EnableButtons()
+        {
+            ButtonAddDevice.IsEnabled = ButtonAddCommand.IsEnabled = ButtonStartSequence.IsEnabled = Menu.IsEnabled = ItemsControlDevice.IsEnabled = ListBoxSequence.IsEnabled = true;
+        }
     }
 }

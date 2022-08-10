@@ -368,7 +368,7 @@
               "RangeMinimum": 15,
               "RangeMaximum": 1500,
               "DecimalPlaces": 2,
-              "Priority": 5,
+              "Priority": 2,
               "CustomParameterName": null,
               "CustomParameterCommand": null,
               "NumberCommandValue": 0,

@@ -55,6 +55,7 @@ namespace DeviceSequenceManager
         public async void ExecuteSequence()
         {
             MainWindow w = (MainWindow)Application.Current.MainWindow;
+            w.DisableButtons();
             w.ProgressBarSequence.Value = 0;
             w.ProgressBarSequence.Visibility = Visibility.Visible;
             w.TextBoxConsole.Text = String.Empty;
@@ -63,6 +64,7 @@ namespace DeviceSequenceManager
             {
                 MessageBox.Show("Could not connect to every device. Please check device status!");
                 w.ProgressBarSequence.Visibility = Visibility.Collapsed;
+                w.EnableButtons();
                 return;
             }
 
@@ -90,6 +92,7 @@ namespace DeviceSequenceManager
             }
 
             w.ProgressBarSequence.Visibility = Visibility.Collapsed;
+            w.EnableButtons();
         }
     }
 }
