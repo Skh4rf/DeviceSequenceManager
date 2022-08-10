@@ -135,7 +135,15 @@ namespace DeviceSequenceManager
         }
         void HelpCommandExecute()
         {
-            System.Diagnostics.Process.Start(@".\DeviceSequenceManagerManual.pdf");
+            try
+            {
+                System.Diagnostics.Process.Start(@".\DeviceSequenceManagerManual.pdf");
+            }
+            catch (Exception)
+            {
+                System.Diagnostics.Process.Start("https://github.com/Skh4rf/DeviceSequenceManager/blob/7330173472ae1809d6cf95f30435e33c05d69128/doc/DeviceSequenceManagerManual.pdf");
+            }
+            
         }
         public void UpdateSequence()
         {
