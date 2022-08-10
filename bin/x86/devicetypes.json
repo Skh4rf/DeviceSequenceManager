@@ -1,0 +1,705 @@
+{
+  "DeviceTypes": [
+    {
+      "Name": "Chroma AC Power Supply 61611",
+      "CommandGroups": [
+        {
+          "Commands": [
+            {
+              "Name": "Instrument Couple",
+              "CommandString": "INSTrument:COUPle",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 1,
+              "CustomParameterName": "None",
+              "CustomParameterCommand": "NONE",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "INSTrument:COUPle NONE",
+              "CastCommandString": "INSTrument:COUPle NONE"
+            },
+            {
+              "Name": "Instrument Couple",
+              "CommandString": "INSTrument:COUPle",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 1,
+              "CustomParameterName": "All",
+              "CustomParameterCommand": "ALL",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "INSTrument:COUPle ALL",
+              "CastCommandString": "INSTrument:COUPle ALL"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Instrument Select",
+              "CommandString": "INSTrument:NSELect",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 1,
+              "CustomParameterName": "Phase 1",
+              "CustomParameterCommand": "1",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "INSTrument:NSELect 1",
+              "CastCommandString": "INSTrument:NSELect 1"
+            },
+            {
+              "Name": "Instrument Select",
+              "CommandString": "INSTrument:NSELect",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 1,
+              "CustomParameterName": "Phase 2",
+              "CustomParameterCommand": "2",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "INSTrument:NSELect 2",
+              "CastCommandString": "INSTrument:NSELect 2"
+            },
+            {
+              "Name": "Instrument Select",
+              "CommandString": "INSTrument:NSELect",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 1,
+              "CustomParameterName": "Phase 3",
+              "CustomParameterCommand": "3",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "INSTrument:NSELect 3",
+              "CastCommandString": "INSTrument:NSELect 3"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Instrument PhaseMode",
+              "CommandString": "INSTrument:PHASe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 1,
+              "CustomParameterName": "Three",
+              "CustomParameterCommand": "THREE",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "INSTrument:PHASe THREE",
+              "CastCommandString": "INSTrument:PHASe THREE"
+            },
+            {
+              "Name": "Instrument PhaseMode",
+              "CommandString": "INSTrument:PHASe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 1,
+              "CustomParameterName": "Single",
+              "CustomParameterCommand": "SINGLE",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "INSTrument:PHASe SINGLE",
+              "CastCommandString": "INSTrument:PHASe SINGLE"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Output State",
+              "CommandString": "OUTPut:STATe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 1,
+              "CustomParameterName": "Off",
+              "CustomParameterCommand": "OFF",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "OUTPut:STATe OFF",
+              "CastCommandString": "OUTPut:STATe OFF"
+            },
+            {
+              "Name": "Output State",
+              "CommandString": "OUTPut:STATe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 10,
+              "CustomParameterName": "On",
+              "CustomParameterCommand": "ON",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "OUTPut:STATe ON",
+              "CastCommandString": "OUTPut:STATe ON"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Output SlewRate Vac",
+              "CommandString": "OUTPut:SLEW:VOLTage:AC",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 1200,
+              "DecimalPlaces": 3,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "OUTPut:SLEW:VOLTage:AC?",
+              "CastCommandString": "OUTPut:SLEW:VOLTage:AC 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Output SlewRate Vdc",
+              "CommandString": "OUTPut:SLEW:VOLTage:DC",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 1200,
+              "DecimalPlaces": 3,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "OUTPut:SLEW:VOLTage:DC?",
+              "CastCommandString": "OUTPut:SLEW:VOLTage:DC 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Output SlewRate Freq",
+              "CommandString": "OUTPut:SLEW:FREQuency",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 1600,
+              "DecimalPlaces": 3,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "OUTPut:SLEW:FREQuency?",
+              "CastCommandString": "OUTPut:SLEW:FREQuency 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Output Coupling",
+              "CommandString": "OUTPut:COUPling",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "AC",
+              "CustomParameterCommand": "AC",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "OUTPut:COUPling AC",
+              "CastCommandString": "OUTPut:COUPling AC"
+            },
+            {
+              "Name": "Output Coupling",
+              "CommandString": "OUTPut:COUPling",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "DC",
+              "CustomParameterCommand": "DC",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "OUTPut:COUPling DC",
+              "CastCommandString": "OUTPut:COUPling DC"
+            },
+            {
+              "Name": "Output Coupling",
+              "CommandString": "OUTPut:COUPling",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "ACDC",
+              "CustomParameterCommand": "ACDC",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "OUTPut:COUPling ACDC",
+              "CastCommandString": "OUTPut:COUPling ACDC"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source Current Limit",
+              "CommandString": "SOURce:CURRent:LIMit",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 128,
+              "DecimalPlaces": 2,
+              "Priority": 2,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:CURRent:LIMit?",
+              "CastCommandString": "SOURce:CURRent:LIMit 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source Current Delay",
+              "CommandString": "SOURce:CURRent:DELay",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 5,
+              "DecimalPlaces": 1,
+              "Priority": 3,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:CURRent:DELay?",
+              "CastCommandString": "SOURce:CURRent:DELay 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source Current Range",
+              "CommandString": "SOURce:CURRent:RANGe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 2,
+              "CustomParameterName": "8A",
+              "CustomParameterCommand": "1",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:CURRent:RANGe 1",
+              "CastCommandString": "SOURce:CURRent:RANGe 1"
+            },
+            {
+              "Name": "Source Current Range",
+              "CommandString": "SOURce:CURRent:RANGe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 2,
+              "CustomParameterName": "32A",
+              "CustomParameterCommand": "2",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:CURRent:RANGe 2",
+              "CastCommandString": "SOURce:CURRent:RANGe 2"
+            },
+            {
+              "Name": "Source Current Range",
+              "CommandString": "SOURce:CURRent:RANGe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 2,
+              "CustomParameterName": "128A",
+              "CustomParameterCommand": "3",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:CURRent:RANGe 3",
+              "CastCommandString": "SOURce:CURRent:RANGe 3"
+            },
+            {
+              "Name": "Source Current Range",
+              "CommandString": "SOURce:CURRent:RANGe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 2,
+              "CustomParameterName": "Auto",
+              "CustomParameterCommand": "AUTO",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:CURRent:RANGe AUTO",
+              "CastCommandString": "SOURce:CURRent:RANGe AUTO"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source Frequency",
+              "CommandString": "SOURce:FREQuency",
+              "CommandType": 1,
+              "RangeMinimum": 15,
+              "RangeMaximum": 1500,
+              "DecimalPlaces": 2,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:FREQuency?",
+              "CastCommandString": "SOURce:FREQuency 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source Freq. Limit",
+              "CommandString": "SOURce:FREQuency:LIMit",
+              "CommandType": 1,
+              "RangeMinimum": 15,
+              "RangeMaximum": 1500,
+              "DecimalPlaces": 2,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:FREQuency:LIMit?",
+              "CastCommandString": "SOURce:FREQuency:LIMit 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source PowerProtect",
+              "CommandString": "SOURce:POWer:PROTection",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 1,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:POWer:PROTection?",
+              "CastCommandString": "SOURce:POWer:PROTection 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source Voltage AC",
+              "CommandString": "SOURce:VOLTage:AC",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 300,
+              "DecimalPlaces": 1,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:VOLTage:AC?",
+              "CastCommandString": "SOURce:VOLTage:AC 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source Voltage DC",
+              "CommandString": "SOURce:VOLTage:DC",
+              "CommandType": 1,
+              "RangeMinimum": -424.19999999999999,
+              "RangeMaximum": 424.19999999999999,
+              "DecimalPlaces": 1,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:VOLTage:DC?",
+              "CastCommandString": "SOURce:VOLTage:DC 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source Volt Limit AC",
+              "CommandString": "SOURce:VOLTage:LIMit:AC",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 300,
+              "DecimalPlaces": 1,
+              "Priority": 2,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:VOLTage:LIMit:AC?",
+              "CastCommandString": "SOURce:VOLTage:LIMit:AC 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source VoltLimit DC\u002B",
+              "CommandString": "SOURce:VOLTage:LIMit:DC:PLUS",
+              "CommandType": 1,
+              "RangeMinimum": -424.19999999999999,
+              "RangeMaximum": 424.19999999999999,
+              "DecimalPlaces": 1,
+              "Priority": 2,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:VOLTage:LIMit:DC:PLUS?",
+              "CastCommandString": "SOURce:VOLTage:LIMit:DC:PLUS 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source VoltLimit DC-",
+              "CommandString": "SOURce:VOLTage:LIMit:DC:MINus",
+              "CommandType": 1,
+              "RangeMinimum": -424.19999999999999,
+              "RangeMaximum": 424.19999999999999,
+              "DecimalPlaces": 1,
+              "Priority": 2,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:VOLTage:LIMit:DC:MINus?",
+              "CastCommandString": "SOURce:VOLTage:LIMit:DC:MINus 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Source Voltage Range",
+              "CommandString": "SOURce:VOLTage:RANGe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 2,
+              "CustomParameterName": "150V (Low)",
+              "CustomParameterCommand": "LOW",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:VOLTage:RANGe LOW",
+              "CastCommandString": "SOURce:VOLTage:RANGe LOW"
+            },
+            {
+              "Name": "Source Voltage Range",
+              "CommandString": "SOURce:VOLTage:RANGe",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 2,
+              "CustomParameterName": "300V (High)",
+              "CustomParameterCommand": "HIGH",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:VOLTage:RANGe HIGH",
+              "CastCommandString": "SOURce:VOLTage:RANGe HIGH"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Phase Angle On",
+              "CommandString": "SOURce:PHASe:ON",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 359.89999999999998,
+              "DecimalPlaces": 1,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:ON?",
+              "CastCommandString": "SOURce:PHASe:ON 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Phase Angle Off",
+              "CommandString": "SOURce:PHASe:OFF",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 360,
+              "DecimalPlaces": 1,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:OFF?",
+              "CastCommandString": "SOURce:PHASe:OFF 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Phase Angle P1 to P2",
+              "CommandString": "SOURce:PHASe:P12",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 359.89999999999998,
+              "DecimalPlaces": 1,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:P12?",
+              "CastCommandString": "SOURce:PHASe:P12 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Phase Angle P1 to P3",
+              "CommandString": "SOURce:PHASe:P13",
+              "CommandType": 1,
+              "RangeMinimum": 0,
+              "RangeMaximum": 359.89999999999998,
+              "DecimalPlaces": 1,
+              "Priority": 5,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:P13?",
+              "CastCommandString": "SOURce:PHASe:P13 0"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Phase Sequence",
+              "CommandString": "SOURce:PHASe:SEQuence",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "Positive",
+              "CustomParameterCommand": "POS",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:SEQuence POS",
+              "CastCommandString": "SOURce:PHASe:SEQuence POS"
+            },
+            {
+              "Name": "Phase Sequence",
+              "CommandString": "SOURce:PHASe:SEQuence",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "Negative",
+              "CustomParameterCommand": "NEG",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:SEQuence NEG",
+              "CastCommandString": "SOURce:PHASe:SEQuence NEG"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Phase Relock",
+              "CommandString": "SOURce:PHASe:RELOCK",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "Enable",
+              "CustomParameterCommand": "ENABLE",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:RELOCK ENABLE",
+              "CastCommandString": "SOURce:PHASe:RELOCK ENABLE"
+            },
+            {
+              "Name": "Phase Relock",
+              "CommandString": "SOURce:PHASe:RELOCK",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "Disable",
+              "CustomParameterCommand": "DISABLE",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:RELOCK DISABLE",
+              "CastCommandString": "SOURce:PHASe:RELOCK DISABLE"
+            }
+          ]
+        },
+        {
+          "Commands": [
+            {
+              "Name": "Phase Tri-Mode",
+              "CommandString": "SOURce:PHASe:THREE",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "Independent",
+              "CustomParameterCommand": "INDEPEND",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:THREE INDEPEND",
+              "CastCommandString": "SOURce:PHASe:THREE INDEPEND"
+            },
+            {
+              "Name": "Phase Tri-Mode",
+              "CommandString": "SOURce:PHASe:THREE",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "Same frequency",
+              "CustomParameterCommand": "SAMEFREQ",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:THREE SAMEFREQ",
+              "CastCommandString": "SOURce:PHASe:THREE SAMEFREQ"
+            },
+            {
+              "Name": "Phase Tri-Mode",
+              "CommandString": "SOURce:PHASe:THREE",
+              "CommandType": 2,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 5,
+              "CustomParameterName": "Balance",
+              "CustomParameterCommand": "BALANCE",
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "SOURce:PHASe:THREE BALANCE",
+              "CastCommandString": "SOURce:PHASe:THREE BALANCE"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
