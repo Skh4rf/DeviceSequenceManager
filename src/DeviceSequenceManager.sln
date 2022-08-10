@@ -5,16 +5,24 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceSequenceManager", "ChromaProcedureManager\DeviceSequenceManager.csproj", "{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DeviceSequenceManager Setup", "DeviceSequenceManager Setup\DeviceSequenceManager Setup.vdproj", "{80D717A6-6FAA-4159-A44B-F26F3587BE67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.All|Any CPU.Build.0 = Release|Any CPU
 		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B50BF6C5-B6B7-415D-9D1E-305C901B1B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D717A6-6FAA-4159-A44B-F26F3587BE67}.All|Any CPU.ActiveCfg = Debug
+		{80D717A6-6FAA-4159-A44B-F26F3587BE67}.Debug|Any CPU.ActiveCfg = Debug
+		{80D717A6-6FAA-4159-A44B-F26F3587BE67}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

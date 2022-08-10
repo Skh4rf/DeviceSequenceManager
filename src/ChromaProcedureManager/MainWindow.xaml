@@ -277,10 +277,12 @@
                                                 </Button>
 
                                                 <Button
-                                                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                                                Width="30"
-                                                Height="30"
-                                                VerticalAlignment="Bottom">
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                                    Width="30"
+                                                    Height="30"
+                                                    VerticalAlignment="Bottom"
+                                                    Command="{Binding DataContext.MoveOperationDownCommand, ElementName=window}"
+                                                    CommandParameter="{Binding}">
                                                     <materialDesign:PackIcon
                                                     Kind="ArrowDownBold"/>
                                                     <Button.IsEnabled>

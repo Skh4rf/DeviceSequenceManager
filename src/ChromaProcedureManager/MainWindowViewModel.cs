@@ -46,9 +46,11 @@ namespace DeviceSequenceManager
         public MVVM.DelegateCommand ExitCommand { get; set; }
         public MVVM.DelegateCommand OpenCommand { get; set; }
         public MVVM.DelegateCommand MoveOperationUpCommand { get; set; }
+        public MVVM.DelegateCommand MoveOperationDownCommand { get; set; }
         public MVVM.DelegateCommand EditOperationCommand { get; set; }
         public MVVM.DelegateCommand NewCommand { get; set; }
         public MVVM.DelegateCommand HelpCommand { get; set; }
+        
 
         public void UpdateDevices()
         {
@@ -117,6 +119,15 @@ namespace DeviceSequenceManager
             DataContainer.Sequence.Operations.Insert(i - 1, (SequenceOperation)value);
             UpdateSequence();
         }
+        void MoveOperationDownCommandExecute(object value)
+        {
+            int i = DataContainer.Sequence.Operations.IndexOf((SequenceOperation)value);
+            if (i - 1 == DataContainer.Sequence.Operations.Count) { return; }
+            DataContainer.Sequence.Operations.RemoveAt(i);
+            DataContainer.Sequence.Operations.Insert(i + 1, (SequenceOperation)value);
+            UpdateSequence();
+        }
+
         void EditOperationCommandExecute(object value)
         {
             DataContainer.addCommandUserControl.OpenAsEdit((SequenceOperation)value);
@@ -168,6 +179,9 @@ namespace DeviceSequenceManager
             MoveOperationUpCommand = new MVVM.DelegateCommand(
                 (o) => true,
                 MoveOperationUpCommandExcecute);
+            MoveOperationDownCommand = new MVVM.DelegateCommand(
+                (o) => true,
+                MoveOperationDownCommandExecute);
             EditOperationCommand = new MVVM.DelegateCommand(
                 (o) => true,
                 EditOperationCommandExecute);
