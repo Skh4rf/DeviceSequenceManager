@@ -153,6 +153,18 @@ namespace DeviceSequenceManager
             }
 
         }
+        void ChromaDatasheetCommandExecute()
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(@".\EN_61611_61612_UserManual_202101.pdf");
+            }
+            catch (Exception)
+            {
+                System.Diagnostics.Process.Start("https://github.com/Skh4rf/DeviceSequenceManager/blob/main/src/ChromaProcedureManager/bin/Debug/EN_61611_61612_UserManual_202101.pdf");
+            }
+
+        }
         public void UpdateSequence()
         {
             DataContainer.Sequence.UpdateIndex();
@@ -192,6 +204,9 @@ namespace DeviceSequenceManager
             HelpCommand = new MVVM.DelegateCommand(
                 (o) => true,
                 (o) => HelpCommandExecute());
+            ChromaDatasheetCommand = new MVVM.DelegateCommand(
+                (o) => true,
+                (o) => ChromaDatasheetCommandExecute());
         }
     }
 }
