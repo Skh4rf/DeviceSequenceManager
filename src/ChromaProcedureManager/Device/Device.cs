@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NationalInstruments.Visa;
+﻿using NationalInstruments.Visa;
+using System;
 using System.Windows;
 
 namespace DeviceSequenceManager
@@ -88,7 +84,8 @@ namespace DeviceSequenceManager
                         deviceSession.Dispose();
                     }
                 }
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 return false;
             }

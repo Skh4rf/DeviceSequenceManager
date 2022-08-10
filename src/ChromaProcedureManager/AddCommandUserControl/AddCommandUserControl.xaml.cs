@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DeviceSequenceManager
 {
@@ -37,13 +30,13 @@ namespace DeviceSequenceManager
             StackPanel stackPanel = new StackPanel();
             int i = 0;
 
-            foreach(CommandGroup commandGroup in deviceType.CommandGroups)
+            foreach (CommandGroup commandGroup in deviceType.CommandGroups)
             {
                 i++;
-                StackPanel stackPanelHorizontal = new StackPanel() 
-                { 
+                StackPanel stackPanelHorizontal = new StackPanel()
+                {
                     Orientation = Orientation.Horizontal,
-                    Margin = new Thickness(0,0,0,20),
+                    Margin = new Thickness(0, 0, 0, 20),
                     Tag = commandGroup
                 };
 
@@ -59,7 +52,7 @@ namespace DeviceSequenceManager
                     Tag = stackPanelHorizontal
                 };
                 SequenceOperation.Device = DataContainer.AddCommandUserControlVM.SelectedDevice;
-                
+
                 foreach (Command command in commandGroup.Commands)
                 {
                     switch (command.CommandType)
@@ -94,7 +87,7 @@ namespace DeviceSequenceManager
                                 RangeMaximum = command.RangeMaximum,
                                 RangeMinimum = command.RangeMinimum
                             });
-                            
+
                             textBoxNumber.SetBinding(TextBox.TextProperty, b);
 
                             textBoxNumber.TextChanged += NumberCommandActivated;
@@ -109,14 +102,14 @@ namespace DeviceSequenceManager
                                 {
                                     Text = command.Name + ":",
                                     VerticalAlignment = VerticalAlignment.Center,
-                                    Margin = new Thickness(0,0,10,0),
+                                    Margin = new Thickness(0, 0, 10, 0),
                                     FontSize = 18,
                                     Foreground = new SolidColorBrush(Colors.Gray)
                                 };
                                 stackPanelHorizontal.Children.Add(textBlockCustom);
                             }
                             comboBoxCommands.Add(command);
-                            
+
                             break;
                         case CommandType.None:
                             break;
@@ -130,7 +123,7 @@ namespace DeviceSequenceManager
                 {
                     StackPanelCommandConfiguration.Children.Add(stackPanel);
                     i = 0;
-                    stackPanel = new StackPanel() { Margin = new Thickness(30,0,0,0)};
+                    stackPanel = new StackPanel() { Margin = new Thickness(30, 0, 0, 0) };
                 }
             }
             StackPanelCommandConfiguration.Children.Add(stackPanel);
@@ -141,7 +134,7 @@ namespace DeviceSequenceManager
             bool ValidationHasError = false;
             foreach (StackPanel sP in StackPanelCommandConfiguration.Children)
             {
-                foreach(StackPanel sp2 in sP.Children)
+                foreach (StackPanel sp2 in sP.Children)
                 {
                     foreach (UIElement element in sp2.Children)
                     {
@@ -167,10 +160,10 @@ namespace DeviceSequenceManager
         {
             TextBox textBox = (TextBox)sender;
             StackPanel stackPanel = (StackPanel)textBox.Tag;
-            
-            foreach(UIElement element in stackPanel.Children)
+
+            foreach (UIElement element in stackPanel.Children)
             {
-                if(element.GetType() == typeof(TextBlock))
+                if (element.GetType() == typeof(TextBlock))
                 {
                     TextBlock tB = (TextBlock)element;
                     tB.Foreground = new SolidColorBrush(Colors.White);
@@ -188,13 +181,13 @@ namespace DeviceSequenceManager
                         CustomParameterName = cmd.CustomParameterName,
                         CustomParameterCommand = cmd.CustomParameterCommand
                     };
-                    
+
                     if (SequenceOperation.Commands.Any(x => x.Name == command.Name))
                     {
                         SequenceOperation.Commands.Remove(SequenceOperation.Commands.Where(x => x.Name == command.Name).FirstOrDefault());
                     }
 
-                    if(!textBox.Text.Equals(String.Empty))
+                    if (!textBox.Text.Equals(String.Empty))
                     {
                         if ((bool)textBox.GetValue(Validation.HasErrorProperty) == false)
                         {
@@ -218,7 +211,7 @@ namespace DeviceSequenceManager
 
             if (cB.SelectedValue == null) { return; }
 
-            foreach(UIElement element in sP.Children)
+            foreach (UIElement element in sP.Children)
             {
                 if (element.GetType() == typeof(TextBlock))
                 {
@@ -240,7 +233,7 @@ namespace DeviceSequenceManager
 
         private void ComboBoxIpAddress_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBoxIpAddress.SelectedValue != null) 
+            if (ComboBoxIpAddress.SelectedValue != null)
             {
                 LoadCommandSection(DataContainer.AddCommandUserControlVM.SelectedDevice.DeviceType);
                 SequenceOperation = new SequenceOperation();
@@ -286,7 +279,7 @@ namespace DeviceSequenceManager
             }
         }
 
-        internal void OpenAsEdit(SequenceOperation operation) 
+        internal void OpenAsEdit(SequenceOperation operation)
         {
             editOperation = operation;
             DataContainer.AddCommandUserControlVM.ShowDialogExecute();
@@ -300,7 +293,7 @@ namespace DeviceSequenceManager
             ComboBoxDeviceType.IsEnabled = false;
             ComboBoxIpAddress.SelectedItem = operation.Device;
             ComboBoxIpAddress.SelectedValue = operation.Device.TcpAddress.TCP;
-            
+
             foreach (StackPanel stackPanel in StackPanelCommandConfiguration.Children)
             {
                 foreach (StackPanel p in stackPanel.Children)
@@ -328,7 +321,7 @@ namespace DeviceSequenceManager
                                 ComboBox comboBox = (ComboBox)element;
                                 Command command = operation.Commands.First(x => x.Name.Equals(textBlock.Text.Remove(textBlock.Text.Length - 1)));
 
-                                foreach(Command c in comboBox.Items)
+                                foreach (Command c in comboBox.Items)
                                 {
                                     if (c.CustomParameterName.Equals(command.CustomParameterName))
                                     {

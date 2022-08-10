@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace DeviceSequenceManager.MVVM
@@ -18,7 +13,7 @@ namespace DeviceSequenceManager.MVVM
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             if (value == null || value.ToString().Equals(String.Empty)) { return new ValidationResult(true, ""); }
-            
+
             try
             {
                 double input = Convert.ToDouble(value);

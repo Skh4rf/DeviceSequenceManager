@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Input;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Text.Json;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Windows.Controls;
 
 namespace DeviceSequenceManager
 {
@@ -222,7 +217,7 @@ namespace DeviceSequenceManager
             CommandNumberRangeMaximum = 0;
             IsNumberEnabled = true;
         }
-        
+
         void SaveCustomParameterExecute()
         {
             IsNumberEnabled = false;
@@ -230,7 +225,7 @@ namespace DeviceSequenceManager
             {
                 Name = commandName,
                 CommandString = commandBase,
-                CommandType= CommandType.Custom,
+                CommandType = CommandType.Custom,
                 CustomParameterName = commandCustomName,
                 CustomParameterCommand = commandCustomCommandParameter,
                 Priority = commandCustomPriority
@@ -248,7 +243,7 @@ namespace DeviceSequenceManager
             DataContainer.DeviceTypes.Add(deviceType);
             DataContainer.AddDeviceUserControlVM.DeviceTypes = DataContainer.DeviceTypes;
 
-            JsonSerializerOptions options = new JsonSerializerOptions() { WriteIndented=true};
+            JsonSerializerOptions options = new JsonSerializerOptions() { WriteIndented = true };
             DataContainerDeviceTypesObject dataContainerDeviceTypesObject = new DataContainerDeviceTypesObject(DataContainer.DeviceTypes);
             string str = JsonSerializer.Serialize(dataContainerDeviceTypesObject, options);
             File.WriteAllText(@".\devicetypes.json", str);

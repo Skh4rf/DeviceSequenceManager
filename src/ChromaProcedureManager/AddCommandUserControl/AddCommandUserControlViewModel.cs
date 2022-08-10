@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using System.Windows.Controls;
-using System.Windows;
 
 namespace DeviceSequenceManager
 {
@@ -57,7 +51,7 @@ namespace DeviceSequenceManager
             {
                 List<DeviceType> list = new List<DeviceType>();
                 if (Devices == null) { return null; }
-                foreach(Device d in Devices)
+                foreach (Device d in Devices)
                 {
                     if (!list.Contains(d.DeviceType)) { list.Add(d.DeviceType); }
                 }
@@ -75,7 +69,7 @@ namespace DeviceSequenceManager
             {
                 List<Device> list = new List<Device>();
                 if (DeviceType == null) { return null; }
-                foreach(Device d in Devices)
+                foreach (Device d in Devices)
                 {
                     if (d.DeviceType == DeviceType) { list.Add(d); }
                 }

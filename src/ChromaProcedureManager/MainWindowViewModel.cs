@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using System.Windows.Controls;
-using System.Text.Json;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Windows;
 
 namespace DeviceSequenceManager
@@ -141,9 +137,9 @@ namespace DeviceSequenceManager
             }
             catch (Exception)
             {
-                System.Diagnostics.Process.Start("https://github.com/Skh4rf/DeviceSequenceManager/blob/7330173472ae1809d6cf95f30435e33c05d69128/doc/DeviceSequenceManagerManual.pdf");
+                System.Diagnostics.Process.Start("https://github.com/Skh4rf/DeviceSequenceManager/blob/main/doc/DeviceSequenceManagerManual.pdf");
             }
-            
+
         }
         public void UpdateSequence()
         {

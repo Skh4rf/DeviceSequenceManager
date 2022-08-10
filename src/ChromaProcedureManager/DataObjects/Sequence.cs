@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using NationalInstruments.Visa;
 using System.Windows;
-using System.Threading;
 
 namespace DeviceSequenceManager
 {
@@ -62,7 +59,7 @@ namespace DeviceSequenceManager
             w.ProgressBarSequence.Visibility = Visibility.Visible;
             w.TextBoxConsole.Text = String.Empty;
 
-            if(devices.Any(x => x.ConnectionAvailable() == false))
+            if (devices.Any(x => x.ConnectionAvailable() == false))
             {
                 MessageBox.Show("Could not connect to every device. Please check device status!");
                 w.ProgressBarSequence.Visibility = Visibility.Collapsed;
@@ -72,7 +69,7 @@ namespace DeviceSequenceManager
             double duration = operations.Sum(x => x.Duration * (int)x.TimeUnit);
             w.ProgressBarSequence.Maximum = duration;
 
-            foreach(SequenceOperation operation in operations)
+            foreach (SequenceOperation operation in operations)
             {
                 List<Command> commands = operation.Commands;
                 commands.Sort((x, y) => x.Priority.CompareTo(y.Priority));

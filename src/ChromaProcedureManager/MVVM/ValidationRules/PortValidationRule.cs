@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Controls;
 
@@ -16,7 +12,7 @@ namespace DeviceSequenceManager.MVVM
 
             string text = value.ToString();
 
-            if(text.Length > 5) { return new ValidationResult(false, "Invalid Port"); }
+            if (text.Length > 5) { return new ValidationResult(false, "Invalid Port"); }
 
             foreach (char c in text.ToCharArray())
             {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DeviceSequenceManager
 {
@@ -57,14 +53,14 @@ namespace DeviceSequenceManager
             get
             {
                 string str = "";
-                foreach(Command cmd in commands)
+                foreach (Command cmd in commands)
                 {
                     str += cmd.CastCommandString + "; ";
                 }
                 return str.Remove(str.Length - 2);
             }
         }
-        
+
         public SequenceOperation()
         {
             commands = new List<Command>();

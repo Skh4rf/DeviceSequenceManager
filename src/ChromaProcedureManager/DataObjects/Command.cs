@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DeviceSequenceManager
 {
@@ -61,7 +57,8 @@ namespace DeviceSequenceManager
                 if (commandtype == CommandType.Number)
                 {
                     return CastCommandStringForNumberCommand(numberCommandValue);
-                }else
+                }
+                else
                 {
                     return CastCommandStringForCustomCommand;
                 }
