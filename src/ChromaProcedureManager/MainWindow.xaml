@@ -59,6 +59,12 @@
             <MenuItem
                 Header="_File">
                 <MenuItem
+                    Header="New"
+                    Icon="{materialDesign:PackIcon Kind=Create}"
+                    Command="{Binding NewCommand}"
+                    />
+                <Separator />
+                <MenuItem
                     Header="Open"
                     Icon="{materialDesign:PackIcon Kind=FolderOpenOutline}"
                     Command="{Binding OpenCommand}"
@@ -90,6 +96,7 @@
                 Header="_Help">
                 <MenuItem
                         Header="_Open manual"
+                        Command="{Binding HelpCommand}"
                         Icon="{materialDesign:PackIcon Kind=Help}" />
             </MenuItem>
 
