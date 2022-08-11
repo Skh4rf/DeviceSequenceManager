@@ -50,3 +50,5 @@ C:\Users\JakMet00\Documents\scratch\DeviceSequenceManager\src\ChromaProcedureMan
 C:\Users\JakMet00\Documents\scratch\DeviceSequenceManager\src\ChromaProcedureManager\obj\Debug\DeviceSequenceManager.csproj.CopyComplete
 C:\Users\JakMet00\Documents\scratch\DeviceSequenceManager\src\ChromaProcedureManager\obj\Debug\ChromaProcedureManager.exe
 C:\Users\JakMet00\Documents\scratch\DeviceSequenceManager\src\ChromaProcedureManager\obj\Debug\ChromaProcedureManager.pdb
+C:\Users\JakMet00\Documents\scratch\DeviceSequenceManager\src\ChromaProcedureManager\obj\Debug\ConfigureSweepWindow\ConfigureSweepWindow.g.cs
+C:\Users\JakMet00\Documents\scratch\DeviceSequenceManager\src\ChromaProcedureManager\obj\Debug\ConfigureSweepWindow\ConfigureSweepWindow.baml

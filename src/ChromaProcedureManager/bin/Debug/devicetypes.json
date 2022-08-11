@@ -700,6 +700,29 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "test",
+      "CommandGroups": [
+        {
+          "Commands": [
+            {
+              "Name": "test",
+              "CommandString": "test",
+              "CommandType": 4,
+              "RangeMinimum": 0,
+              "RangeMaximum": 0,
+              "DecimalPlaces": 0,
+              "Priority": 0,
+              "CustomParameterName": null,
+              "CustomParameterCommand": null,
+              "NumberCommandValue": 0,
+              "CastCommandStringForCustomCommand": "test?",
+              "CastCommandString": "test?"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

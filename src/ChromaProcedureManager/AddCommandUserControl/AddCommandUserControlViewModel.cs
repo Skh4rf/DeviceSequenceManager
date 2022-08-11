@@ -113,9 +113,31 @@ namespace DeviceSequenceManager
             IsEdit = false;
         }
 
+        public MVVM.DelegateCommand ShowSweepConfigurationCommand { get; set; }
+
+        void ShowSweepConfigurationCommandExecute()
+        {
+            MainWindow w = (MainWindow)System.Windows.Application.Current.MainWindow;
+            w.IsEnabled = false;
+            ConfigureSweepWindow sweepWindow = new ConfigureSweepWindow(SelectedDevice);
+            sweepWindow.Closed += SweepWindow_Closed;
+            sweepWindow.Show();
+            
+        }
+
+        private void SweepWindow_Closed(object sender, EventArgs e)
+        {
+            MainWindow w = (MainWindow)System.Windows.Application.Current.MainWindow;
+            w.IsEnabled = true;
+        }
+
         public AddCommandUserControlViewModel()
         {
             DataContainer.AddCommandUserControlVM = this;
+
+            ShowSweepConfigurationCommand = new MVVM.DelegateCommand(
+                (o) => true,
+                (o) => ShowSweepConfigurationCommandExecute());
         }
     }
 }

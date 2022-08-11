@@ -25,6 +25,11 @@ namespace DeviceSequenceManager
             DataContainer.addCommandUserControl = this;
         }
 
+        public void CloseDialog()
+        {
+            AddCommandDialog.IsOpen = false;
+        }
+
         internal void LoadCommandSection(DeviceType deviceType)
         {
             StackPanel stackPanel = new StackPanel();

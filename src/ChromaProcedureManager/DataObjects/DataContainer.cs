@@ -12,6 +12,7 @@ namespace DeviceSequenceManager
         public static MainWindowViewModel MainWindowVM;
         public static AddDeviceTypeUserControlViewModel AddDeviceTypeUserControlVM;
         public static AddCommandUserControlViewModel AddCommandUserControlVM;
+        public static ConfigureSweepWindowViewModel ConfigureSweepWindowVM;
 
         public static AddCommandUserControl addCommandUserControl;
 

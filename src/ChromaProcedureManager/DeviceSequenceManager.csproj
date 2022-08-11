@@ -54,6 +54,9 @@
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ivi.Visa, Version=5.11.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL" />
     <Reference Include="MaterialDesignColors, Version=2.0.6.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
@@ -124,10 +127,15 @@
     <Compile Include="AddDeviceUserControl\AddDeviceUserControl.xaml.cs">
       <DependentUpon>AddDeviceUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfigureSweepWindow\ConfigureSweepWindow.xaml.cs">
+      <DependentUpon>ConfigureSweepWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigureSweepWindow\ConfigureSweepWindowViewModel.cs" />
     <Compile Include="DataObjects\Command.cs" />
     <Compile Include="DataObjects\DataContainer.cs" />
     <Compile Include="DataObjects\DataContainerDeviceTypesObject.cs" />
     <Compile Include="DataObjects\DataContainerObject.cs" />
+    <Compile Include="DataObjects\SweepOperation.cs" />
     <Compile Include="Device\Device.cs" />
     <Compile Include="Device\DeviceType.cs" />
     <Compile Include="MVVM\Converter\BoolInvertConverter.cs" />
@@ -157,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddDeviceUserControl\AddDeviceUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigureSweepWindow\ConfigureSweepWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,6 +204,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

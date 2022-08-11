@@ -1,0 +1,151 @@
+﻿<Window x:Class="DeviceSequenceManager.ConfigureSweepWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeviceSequenceManager"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Configure Sweep" Height="500" Width="450"
+        WindowStyle="ToolWindow"
+        xmlns:mvvm="clr-namespace:DeviceSequenceManager.MVVM"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        Tag="{Binding Device, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+    <Window.DataContext>
+        <local:ConfigureSweepWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid Margin="16">
+        <StackPanel>
+            <TextBlock
+                Text="Configure Sweep:"
+                Style="{StaticResource MaterialDesignHeadline3TextBlock}"/>
+
+            <ComboBox 
+                Name="ComboBoxSelectValue"
+                HorizontalAlignment="Left"
+                Margin="0 20 0 0"
+                VerticalAlignment="Top" 
+                Width="280"
+                materialDesign:HintAssist.Hint="Value to Sweep"
+                FontSize="16"
+                Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                ItemsSource="{Binding Commands}"
+                DisplayMemberPath="Name">
+                <ComboBox.SelectedItem>
+                    <Binding
+                        Path="Command">
+                        <Binding.ValidationRules>
+                            <mvvm:ComboBoxNotEmptyValidationRule
+                            ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ComboBox.SelectedItem>
+            </ComboBox>
+
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 50 0 0">
+                <TextBox 
+                    Name="TextBoxStartValue"
+                    HorizontalAlignment="Left" 
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top" 
+                    Width="180" 
+                    materialDesign:HintAssist.Hint="Start Value"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                    FontSize="16"
+                    Text="{Binding StartValue, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.IsEnabled>
+                        <Binding
+                            ElementName="ComboBoxSelectValue"
+                            Path="(Validation.HasError)">
+                            <Binding.Converter>
+                                <mvvm:BoolInvertConverter/>
+                            </Binding.Converter>
+                        </Binding>
+                    </TextBox.IsEnabled>
+                </TextBox>
+
+                <TextBlock 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Center" 
+                    TextWrapping="Wrap" 
+                    Text="-"
+                    Margin="0 5 0 0"
+                    VerticalAlignment="Top" 
+                    Height="53" Width="30" 
+                    FontSize="36"/>
+
+                <TextBox 
+                    Name="TextBoxStopValue"
+                    HorizontalAlignment="Left" 
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top" 
+                    Width="180" 
+                    materialDesign:HintAssist.Hint="Stop Value"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                    FontSize="16"
+                    IsEnabled="{Binding ElementName=TextBoxStartValue, Path=IsEnabled}"
+                    Text="{Binding StopValue}"/>
+            </StackPanel>
+
+            <TextBox 
+                Name="TextBoxDivision"
+                HorizontalAlignment="Left"
+                Margin="0 20 0 0"
+                TextWrapping="Wrap"
+                VerticalAlignment="Top" 
+                Width="180" 
+                materialDesign:HintAssist.Hint="Increment"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                FontSize="16"
+                IsEnabled="{Binding ElementName=TextBoxStartValue, Path=IsEnabled}"
+                Text="{Binding IncrementString}"/>
+
+            <TextBox
+                HorizontalAlignment="Left"
+                Margin="0 20 0 0"
+                TextWrapping="Wrap"
+                VerticalAlignment="Top" 
+                Width="180" 
+                materialDesign:HintAssist.Hint="Time per increment"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                FontSize="16"
+                IsEnabled="{Binding ElementName=TextBoxStartValue, Path=IsEnabled}"
+                Text="{Binding TimePerIncrement}"/>
+        </StackPanel>
+
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="0 0 0 0">
+            <Button
+                Style="{StaticResource MaterialDesignFlatButton}"
+                IsDefault="True"
+                Margin="0 8 8 0"
+                Name="ButtonAccept"
+                Content="ACCEPT"
+                Command="{Binding AcceptCommand}"
+                Click="ButtonAccept_Click">
+            </Button>
+
+            <Button
+                Style="{StaticResource MaterialDesignFlatButton}"
+                IsCancel="True"
+                Margin="0 8 8 0"
+                Content="CANCEL">
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

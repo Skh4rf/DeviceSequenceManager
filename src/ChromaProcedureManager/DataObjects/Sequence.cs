@@ -73,22 +73,29 @@ namespace DeviceSequenceManager
 
             foreach (SequenceOperation operation in operations)
             {
-                List<Command> commands = operation.Commands;
-                commands.Sort((x, y) => x.Priority.CompareTo(y.Priority));
-
-                string cmdString = "\n";
-
-                foreach (Command c in commands)
+                if (operation.IsSweep)
                 {
-                    cmdString += c.CastCommandString + "\n";
+                    operation.Sweep.ExecuteSweep();
                 }
+                else
+                {
+                    List<Command> commands = operation.Commands;
+                    commands.Sort((x, y) => x.Priority.CompareTo(y.Priority));
 
-                operation.Device.OpenSession();
-                operation.Device.WriteCommand(cmdString);
-                w.TextBoxConsole.Text += $">> {operation.Device.TcpAddress.TCP}\n{cmdString}\n----------------\n\n";
-                await Task.Delay(operation.Duration * (int)operation.TimeUnit * 1000);
-                operation.Device.CloseSession();
-                w.ProgressBarSequence.Value += operation.Duration * (int)operation.TimeUnit;
+                    string cmdString = "\n";
+
+                    foreach (Command c in commands)
+                    {
+                        cmdString += c.CastCommandString + "\n";
+                    }
+
+                    operation.Device.OpenSession();
+                    operation.Device.WriteCommand(cmdString);
+                    w.TextBoxConsole.Text += $">> {operation.Device.TcpAddress.TCP}\n{cmdString}\n----------------\n\n";
+                    await Task.Delay(operation.Duration * (int)operation.TimeUnit * 1000);
+                    operation.Device.CloseSession();
+                    w.ProgressBarSequence.Value += operation.Duration * (int)operation.TimeUnit;
+                }
             }
 
             w.ProgressBarSequence.Visibility = Visibility.Collapsed;

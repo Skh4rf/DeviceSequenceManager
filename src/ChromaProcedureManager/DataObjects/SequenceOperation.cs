@@ -9,6 +9,8 @@ namespace DeviceSequenceManager
         private int duration;
         private TimeUnit timeUnit;
         private int index;
+        private bool isSweep;
+        private SweepOperation sweep;
 
         public int Index
         {
@@ -47,6 +49,16 @@ namespace DeviceSequenceManager
             get { return commands; }
             set { commands = value; }
         }
+        public bool IsSweep
+        {
+            get { return isSweep; }
+            set { isSweep = value; }
+        }
+        public SweepOperation Sweep
+        {
+            get { return sweep; }
+            set { sweep = value; }
+        }
 
         public string CommandList
         {
@@ -57,7 +69,11 @@ namespace DeviceSequenceManager
                 {
                     str += cmd.CastCommandString + "; ";
                 }
-                return str.Remove(str.Length - 2);
+                if (str.Length > 2)
+                {
+                    return str.Remove(str.Length - 2);
+                }
+                return "";
             }
         }
 

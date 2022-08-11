@@ -47,7 +47,7 @@ namespace DeviceSequenceManager
 
         public string CastCommandStringForNumberCommand(double value)
         {
-            return CommandString + " " + value.ToString();
+            return CommandString + " " + value.ToString(new System.Globalization.CultureInfo("en-EN"));
         }
 
         public string CastCommandString
