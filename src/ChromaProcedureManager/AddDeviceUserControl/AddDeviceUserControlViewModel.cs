@@ -127,6 +127,10 @@ namespace DeviceSequenceManager
                     if (operation.Device.TcpAddress.TCP.Equals(oldDevice.TcpAddress.TCP))
                     {
                         operation.Device = device;
+                        if (operation.IsSweep)
+                        {
+                            operation.Sweep.Device = device;
+                        }
                     }
                 }
                 DataContainer.Sequence.UpdateDeviceList();

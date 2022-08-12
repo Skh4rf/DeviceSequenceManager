@@ -69,13 +69,15 @@ namespace DeviceSequenceManager
             }
 
             double duration = operations.Sum(x => x.Duration * (int)x.TimeUnit);
+
             w.ProgressBarSequence.Maximum = duration;
 
             foreach (SequenceOperation operation in operations)
             {
                 if (operation.IsSweep)
                 {
-                    operation.Sweep.ExecuteSweep();
+                    await operation.Sweep.ExecuteSweep();
+                    w.ProgressBarSequence.Value += operation.Duration;
                 }
                 else
                 {

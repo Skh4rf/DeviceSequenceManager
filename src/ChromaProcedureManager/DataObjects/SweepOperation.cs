@@ -52,7 +52,7 @@ namespace DeviceSequenceManager
 
         }
 
-        public async void ExecuteSweep()
+        public async Task ExecuteSweep()
         {
             double localValue = startValue;
             MainWindow w = (MainWindow)Application.Current.MainWindow;

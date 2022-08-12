@@ -32,6 +32,8 @@ namespace DeviceSequenceManager
         private double stopValue;
         private double increment;
         private int timePerIncrement;
+        private bool isEdit;
+        private SequenceOperation oldOperation;
 
         #region PropertyIni
         public Device Device
@@ -79,6 +81,16 @@ namespace DeviceSequenceManager
             get { return timePerIncrement; }
             set { timePerIncrement = value; NotifyPropertyChanged(); }
         }
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            set { isEdit = value; NotifyPropertyChanged(); }
+        }
+        public SequenceOperation OldOperation
+        {
+            get { return oldOperation; }
+            set { oldOperation = value; NotifyPropertyChanged(); }
+        }
         #endregion PropertyIni
         void UpdateCommands()
         {
@@ -98,6 +110,8 @@ namespace DeviceSequenceManager
         }
 
         public MVVM.DelegateCommand AcceptCommand { get; set; }
+        public MVVM.DelegateCommand CancelCommand { get; set; }
+        public MVVM.DelegateCommand DeleteCommand { get; set; }
 
         void AcceptCommandExecute()
         {
@@ -114,12 +128,49 @@ namespace DeviceSequenceManager
                     Increment = this.Increment,
                     TimePerIncrement = this.TimePerIncrement,
                 }
-
             };
-            DataContainer.Sequence.AddOperation(operation);
-            DataContainer.AddCommandUserControlVM.IsOpen = false;
-            DataContainer.MainWindowVM.UpdateSequence();
 
+            if (IsEdit)
+            {
+                DataContainer.Sequence.Operations[DataContainer.Sequence.Operations.IndexOf(OldOperation)] = operation;
+                DataContainer.Sequence.UpdateDeviceList();
+                DataContainer.Sequence.UpdateIndex();
+                DataContainer.AddCommandUserControlVM.IsOpen = false;
+                DataContainer.MainWindowVM.UpdateSequence();
+            }
+            else
+            {
+                DataContainer.Sequence.AddOperation(operation);
+                DataContainer.AddCommandUserControlVM.IsOpen = false;
+                DataContainer.MainWindowVM.UpdateSequence();
+            }
+
+            IsEdit = false;
+        }
+
+        void CancelCommandExecute()
+        {
+            DataContainer.AddCommandUserControlVM.IsOpen = false;
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType() == typeof(ConfigureSweepWindow))
+                {
+                    w.Close();
+                }
+            }
+        }
+        void DeleteCommandExecute()
+        {
+            DataContainer.Sequence.Operations.Remove(oldOperation);
+            DataContainer.MainWindowVM.UpdateSequence();
+            DataContainer.AddCommandUserControlVM.IsOpen = false;
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType() == typeof(ConfigureSweepWindow))
+                {
+                    w.Close();
+                }
+            }
         }
 
         public ConfigureSweepWindowViewModel()
@@ -129,6 +180,12 @@ namespace DeviceSequenceManager
             AcceptCommand = new MVVM.DelegateCommand(
                 (o) => true,
                 (o) => AcceptCommandExecute());
+            DeleteCommand = new MVVM.DelegateCommand(
+                (o) => true,
+                (o) => DeleteCommandExecute());
+            CancelCommand = new MVVM.DelegateCommand(
+                (o) => true,
+                (o) => CancelCommandExecute());
         }
     }
 }

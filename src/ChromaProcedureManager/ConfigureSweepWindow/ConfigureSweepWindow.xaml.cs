@@ -34,11 +34,18 @@ namespace DeviceSequenceManager
             DataContainer.ConfigureSweepWindowVM.Increment = operation.Sweep.Increment;
             DataContainer.ConfigureSweepWindowVM.TimePerIncrement = operation.Sweep.TimePerIncrement;
             DataContainer.ConfigureSweepWindowVM.Command = operation.Sweep.Command;
+            DataContainer.ConfigureSweepWindowVM.OldOperation = operation;
+            DataContainer.ConfigureSweepWindowVM.IsEdit = true;
         }
 
         private void ButtonAccept_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            DataContainer.AddCommandUserControlVM.IsOpen = false;
         }
     }
 }

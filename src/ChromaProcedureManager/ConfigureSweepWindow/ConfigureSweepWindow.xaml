@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeviceSequenceManager"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Configure Sweep" Height="500" Width="450"
         WindowStyle="ToolWindow"
@@ -17,7 +18,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
-        Tag="{Binding Device, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        Tag="{Binding Device, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Closed="Window_Closed">
 
     <Window.DataContext>
         <local:ConfigureSweepWindowViewModel/>
@@ -141,9 +142,27 @@
 
             <Button
                 Style="{StaticResource MaterialDesignFlatButton}"
+                IsDefault="True"
+                Margin="0 8 8 0"
+                Name="ButtonDelete"
+                Content="DELETE" 
+                Command="{Binding DeleteCommand}">
+                <Button.Visibility>
+                    <Binding
+                        Path="IsEdit">
+                        <Binding.Converter>
+                            <BooleanToVisibilityConverter/>
+                        </Binding.Converter>
+                    </Binding>
+                </Button.Visibility>
+            </Button>
+
+            <Button
+                Style="{StaticResource MaterialDesignFlatButton}"
                 IsCancel="True"
                 Margin="0 8 8 0"
-                Content="CANCEL">
+                Content="CANCEL"
+                Command="{Binding CancelCommand}">
             </Button>
         </StackPanel>
 
