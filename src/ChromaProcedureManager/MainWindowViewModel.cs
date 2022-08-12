@@ -51,6 +51,9 @@ namespace DeviceSequenceManager
         public MVVM.DelegateCommand NewCommand { get; set; }
         public MVVM.DelegateCommand HelpCommand { get; set; }
         public MVVM.DelegateCommand ChromaDatasheetCommand { get; set; }
+        public MVVM.DelegateCommand ExtendDeviceTypesCommand { get; set; }
+        public MVVM.DelegateCommand ReplaceDeviceTypesCommand { get; set; }
+        public MVVM.DelegateCommand ExportDeviceTypesCommand { get; set; }
 
 
         public void UpdateDevices()
@@ -165,12 +168,80 @@ namespace DeviceSequenceManager
             }
 
         }
+        void ExtendDeviceTypesCommandExecute()
+        {
+            System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog
+            {
+                Title = "Extend device types",
+                Filter = "device-types file (*.json)|*.json"
+            };
+
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string str = File.ReadAllText(openFileDialog.FileName);
+                DataContainerDeviceTypesObject dataContainerDeviceTypesObject = JsonSerializer.Deserialize<DataContainerDeviceTypesObject>(str);
+                
+                List<DeviceType> deviceTypes = new List<DeviceType>();
+                deviceTypes = dataContainerDeviceTypesObject.DeviceTypes;
+
+                foreach (DeviceType d in deviceTypes)
+                {
+                    if (!DataContainer.DeviceTypes.Any(x => x.Name.Equals(d.Name)))
+                    {
+                        DataContainer.DeviceTypes.Add(d);
+                    }
+                }
+                DataContainer.AddDeviceUserControlVM.DeviceTypes = DataContainer.DeviceTypes;
+
+                JsonSerializerOptions options = new JsonSerializerOptions() { WriteIndented = true };
+                DataContainerDeviceTypesObject dataContainerDeviceTypesObject2 = new DataContainerDeviceTypesObject(DataContainer.DeviceTypes);
+                string cmdstr = JsonSerializer.Serialize(dataContainerDeviceTypesObject, options);
+                File.WriteAllText(@".\devicetypes.json", cmdstr);
+            }
+        }
+        void ReplaceDeviceTypesCommandExecute()
+        {
+            System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog()
+            {
+                Title = "Replace device types",
+                Filter = "device-types file (*.json)|*.json"
+            };
+
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string str = File.ReadAllText(openFileDialog.FileName);
+                DataContainerDeviceTypesObject dataContainerDeviceTypesObject = JsonSerializer.Deserialize<DataContainerDeviceTypesObject>(str);
+
+                DataContainer.DeviceTypes = dataContainerDeviceTypesObject.DeviceTypes;
+                DataContainer.AddDeviceUserControlVM.DeviceTypes = dataContainerDeviceTypesObject.DeviceTypes;
+
+                JsonSerializerOptions options = new JsonSerializerOptions() { WriteIndented = true };
+                string str2 = JsonSerializer.Serialize(dataContainerDeviceTypesObject, options);
+                File.WriteAllText(@".\devicetypes.json", str2);
+            }
+        }
+        void ExportDeviceTypesCommandExecute()
+        {
+            System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog()
+            {
+                Title = "Export device types",
+                DefaultExt = "*.json",
+                Filter = "device-types file (*.json)|*.json"
+            };
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                File.Copy(@".\devicetypes.json", saveFileDialog.FileName);
+                File.Open(saveFileDialog.FileName, FileMode.Open);
+            }
+        }
         public void UpdateSequence()
         {
             DataContainer.Sequence.UpdateIndex();
             this.Sequence = null;
             this.Sequence = DataContainer.Sequence;
         }
+
 
         public MainWindowViewModel()
         {
@@ -207,6 +278,15 @@ namespace DeviceSequenceManager
             ChromaDatasheetCommand = new MVVM.DelegateCommand(
                 (o) => true,
                 (o) => ChromaDatasheetCommandExecute());
+            ExtendDeviceTypesCommand = new MVVM.DelegateCommand(
+                (o) => true,
+                (o) => ExtendDeviceTypesCommandExecute());
+            ReplaceDeviceTypesCommand = new MVVM.DelegateCommand(
+                (o) => true,
+                (o) => ReplaceDeviceTypesCommandExecute());
+            ExportDeviceTypesCommand = new MVVM.DelegateCommand(
+                (o) => true,
+                (o) => ExportDeviceTypesCommandExecute());
         }
     }
 }

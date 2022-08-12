@@ -90,6 +90,20 @@
                     Icon="{materialDesign:PackIcon Kind=DatabaseAdd}" 
                     Click="MenuItemCreateNewDeviceType_Click"/>
                 <MenuItem
+                    Header="Extend device-types"
+                    Icon="{materialDesign:PackIcon Kind=Add}" 
+                    Command="{Binding ExtendDeviceTypesCommand}"/>
+                <MenuItem
+                    Header="Replace device-types"
+                    Icon="{materialDesign:PackIcon Kind=Wrench}"
+                    Command="{Binding ReplaceDeviceTypesCommand}"/>
+                <Separator/>
+                <MenuItem
+                    Header="Export device-types"
+                    Icon="{materialDesign:PackIcon Kind=ExportVariant}"
+                    Command="{Binding ExportDeviceTypesCommand}"/>
+                <Separator/>
+                <MenuItem
                     Header="Settings"
                     Icon="{materialDesign:PackIcon Kind=Settings}"
                     IsEnabled="False"/>
@@ -97,13 +111,13 @@
             <MenuItem
                 Header="_Help">
                 <MenuItem
-                        Header="_Open manual"
-                        Command="{Binding HelpCommand}"
-                        Icon="{materialDesign:PackIcon Kind=Help}" />
+                    Header="_Open manual"
+                    Command="{Binding HelpCommand}"
+                    Icon="{materialDesign:PackIcon Kind=Help}" />
                 <MenuItem
-                        Header="_Chroma 61611 datasheet"
-                        Command="{Binding ChromaDatasheetCommand}"
-                        Icon="{materialDesign:PackIcon Kind=Book}" />
+                    Header="_Chroma 61611 datasheet"
+                    Command="{Binding ChromaDatasheetCommand}"
+                    Icon="{materialDesign:PackIcon Kind=Book}" />
             </MenuItem>
 
         </Menu>

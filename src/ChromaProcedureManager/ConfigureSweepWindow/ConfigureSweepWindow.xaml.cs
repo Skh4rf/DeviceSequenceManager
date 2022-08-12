@@ -23,7 +23,17 @@ namespace DeviceSequenceManager
         {
             InitializeComponent();
             DataContainer.ConfigureSweepWindowVM.Device = device;
-            
+        }
+
+        internal ConfigureSweepWindow(SequenceOperation operation)
+        {
+            InitializeComponent();
+            DataContainer.ConfigureSweepWindowVM.Device = operation.Device;
+            DataContainer.ConfigureSweepWindowVM.StopValue = operation.Sweep.EndValue;
+            DataContainer.ConfigureSweepWindowVM.StartValue = operation.Sweep.StartValue;
+            DataContainer.ConfigureSweepWindowVM.Increment = operation.Sweep.Increment;
+            DataContainer.ConfigureSweepWindowVM.TimePerIncrement = operation.Sweep.TimePerIncrement;
+            DataContainer.ConfigureSweepWindowVM.Command = operation.Sweep.Command;
         }
 
         private void ButtonAccept_Click(object sender, RoutedEventArgs e)

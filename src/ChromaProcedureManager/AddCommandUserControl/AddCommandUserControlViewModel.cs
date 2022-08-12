@@ -122,7 +122,15 @@ namespace DeviceSequenceManager
             ConfigureSweepWindow sweepWindow = new ConfigureSweepWindow(SelectedDevice);
             sweepWindow.Closed += SweepWindow_Closed;
             sweepWindow.Show();
-            
+        }
+
+        public void ShowSweepConfiguration(SequenceOperation operation)
+        {
+            MainWindow w = (MainWindow)System.Windows.Application.Current.MainWindow;
+            w.IsEnabled = false;
+            ConfigureSweepWindow sweepWindow = new ConfigureSweepWindow(operation);
+            sweepWindow.Closed += SweepWindow_Closed;
+            sweepWindow.Show();
         }
 
         private void SweepWindow_Closed(object sender, EventArgs e)

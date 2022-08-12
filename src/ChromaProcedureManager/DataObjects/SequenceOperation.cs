@@ -1,4 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Windows;
 
 namespace DeviceSequenceManager
 {
@@ -57,13 +64,24 @@ namespace DeviceSequenceManager
         public SweepOperation Sweep
         {
             get { return sweep; }
-            set { sweep = value; }
+            set 
+            { 
+                sweep = value;
+                if (Sweep != null)
+                {
+                    Duration = Convert.ToInt32(((sweep.EndValue - sweep.StartValue) / sweep.Increment) * sweep.TimePerIncrement / 1000); TimeUnit = TimeUnit.Seconds;
+                }
+            }
         }
 
         public string CommandList
         {
             get
             {
+                if (isSweep)
+                {
+                    return $"Sweep {Sweep.Command.CommandString} from {Sweep.StartValue} to {Sweep.EndValue}";
+                }
                 string str = "";
                 foreach (Command cmd in commands)
                 {

@@ -299,38 +299,45 @@ namespace DeviceSequenceManager
             ComboBoxIpAddress.SelectedItem = operation.Device;
             ComboBoxIpAddress.SelectedValue = operation.Device.TcpAddress.TCP;
 
-            foreach (StackPanel stackPanel in StackPanelCommandConfiguration.Children)
+            if (operation.IsSweep)
             {
-                foreach (StackPanel p in stackPanel.Children)
+                DataContainer.AddCommandUserControlVM.ShowSweepConfiguration(operation);
+            }
+            else
+            {
+                foreach (StackPanel stackPanel in StackPanelCommandConfiguration.Children)
                 {
-                    TextBlock textBlock = null;
-                    foreach (UIElement element in p.Children)
+                    foreach (StackPanel p in stackPanel.Children)
                     {
-                        if (element.GetType() == typeof(TextBlock))
+                        TextBlock textBlock = null;
+                        foreach (UIElement element in p.Children)
                         {
-                            TextBlock tB = (TextBlock)element;
-                            if (operation.Commands.Any(x => x.Name.Equals(tB.Text.Remove(tB.Text.Length - 1))))
+                            if (element.GetType() == typeof(TextBlock))
                             {
-                                textBlock = tB;
-                            }
-                        }
-                        else if (textBlock != null)
-                        {
-                            if (element.GetType() == typeof(TextBox))
-                            {
-                                TextBox textBox = (TextBox)element;
-                                textBox.Text = operation.Commands.First(x => x.Name.Equals(textBlock.Text.Remove(textBlock.Text.Length - 1))).NumberCommandValue.ToString();
-                            }
-                            if (element.GetType() == typeof(ComboBox))
-                            {
-                                ComboBox comboBox = (ComboBox)element;
-                                Command command = operation.Commands.First(x => x.Name.Equals(textBlock.Text.Remove(textBlock.Text.Length - 1)));
-
-                                foreach (Command c in comboBox.Items)
+                                TextBlock tB = (TextBlock)element;
+                                if (operation.Commands.Any(x => x.Name.Equals(tB.Text.Remove(tB.Text.Length - 1))))
                                 {
-                                    if (c.CustomParameterName.Equals(command.CustomParameterName))
+                                    textBlock = tB;
+                                }
+                            }
+                            else if (textBlock != null)
+                            {
+                                if (element.GetType() == typeof(TextBox))
+                                {
+                                    TextBox textBox = (TextBox)element;
+                                    textBox.Text = operation.Commands.First(x => x.Name.Equals(textBlock.Text.Remove(textBlock.Text.Length - 1))).NumberCommandValue.ToString();
+                                }
+                                if (element.GetType() == typeof(ComboBox))
+                                {
+                                    ComboBox comboBox = (ComboBox)element;
+                                    Command command = operation.Commands.First(x => x.Name.Equals(textBlock.Text.Remove(textBlock.Text.Length - 1)));
+
+                                    foreach (Command c in comboBox.Items)
                                     {
-                                        comboBox.SelectedItem = c;
+                                        if (c.CustomParameterName.Equals(command.CustomParameterName))
+                                        {
+                                            comboBox.SelectedItem = c;
+                                        }
                                     }
                                 }
                             }

@@ -67,7 +67,7 @@ namespace DeviceSequenceManager
         public double Increment
         {
             get { return increment; }
-            set { increment = value; NotifyPropertyChanged(); }
+            set { increment = value; NotifyPropertyChanged(); NotifyPropertyChanged("IncrementString"); }
         }
         public string IncrementString
         {
